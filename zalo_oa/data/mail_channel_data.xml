@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="mail.channel" id="channel_zalo">
+            <field name="name">ChatZalo</field>
+            <field name="description">ChatZalo Integration</field>
+            <field name="image_128" type="base64" file="zalo_oa/static/description/logo.png"/>
+        </record>
+
+        <record model="mail.message" id="module_install_notification">
+            <field name="model">mail.channel</field>
+            <field name="res_id" ref="zalo_oa.channel_zalo"/>
+            <field name="message_type">email</field>
+            <field name="subtype_id" ref="mail.mt_comment"/>
+            <field name="subject">Welcome to ChatZalo Channel!</field>
+            <field name="body"><![CDATA[<p>Welcome to the #ChatZalo channel.</p>
+            <p>Ask your questions to ChatZalo</b>.</p>]]></field>
+        </record>
+
+        <record model="mail.channel.partner" id="channel_member_chatzalo_channel_for_admin">
+            <field name="partner_id" ref="base.partner_admin"/>
+            <field name="channel_id" ref="zalo_oa.channel_zalo"/>
+            <field name="fetched_message_id" ref="zalo_oa.module_install_notification"/>
+            <field name="seen_message_id" ref="zalo_oa.module_install_notification"/>
+        </record>
+
+        <record model="mail.channel" id="zalo_oa.channel_zalo">
+            <field name="group_ids" eval="[Command.link(ref('base.group_user'))]"/>
+        </record>
+    </data>
+</odoo>

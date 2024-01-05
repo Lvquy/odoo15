@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_inherit_res_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group/group/field[@name='vat']" position="after">
+                    <field name="zalo_id"/>
+                    <field name="image_url" widget="url" invisible="1"/>
+                    <field name="zalo_chat"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

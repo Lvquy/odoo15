@@ -1,0 +1,1 @@
+from . import zalo, res_config_settings, res_partner, get_image_from_url

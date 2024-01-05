@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_chatzalo_form" model="ir.ui.view">
+            <field name="name">chatzalo.form</field>
+            <field name="model">chat.zalo</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar"
+                               options="{&quot;preview_image&quot;: &quot;image&quot;}"/>
+                        <div class="oe_title mb24">
+                            <h1>
+                                <field class="text-break" name="name" default_focus="1"
+                                       placeholder="Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="image_url" widget="url" invisible="1"/>
+                                <field name="zalo_id"/>
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page name="log" string="Lịch sử chat">
+                                <field name="log_chat" widget="one2many_list" options="{'reload_on_button': true}"/>
+                            </page>
+                        </notebook>
+                        <form>
+                            <field name="mess"/>
+                            <button name="send_mess" type='object' class="btn btn-primary float-right m-5 p-5">send</button>
+                        </form>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- your_module/views/chatzalo_tree_view.xml -->
+        <record id="view_chatzalo_tree" model="ir.ui.view">
+            <field name="name">chatzalo.tree</field>
+            <field name="model">chat.zalo</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="zalo_id"/>
+                    <field name="log_chat"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_logchatzalo_form" model="ir.ui.view">
+            <field name="name">logchatzalo.form</field>
+            <field name="model">log.chat</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="text_chat"/>
+                            <field name="date_chat"/>
+                            <field name="author"/>
+                            <field name="ref_chat" widget="many2one_list"
+                                   options="{'no_open': True, 'no_create': True}"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_logchatzalo_tree" model="ir.ui.view">
+            <field name="name">logchatzalo.tree</field>
+            <field name="model">log.chat</field>
+            <field name="arch" type="xml">
+                <tree decoration-info="author != 'Trường Phát'">
+                    <field name="text_chat"/>
+                    <field name="date_chat"/>
+                    <field name="author"/>
+                    <field name="ref_chat" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- your_module/views/chatzalo_action.xml -->
+        <record id="action_chatzalo" model="ir.actions.act_window">
+            <field name="name">Chat Zalo</field>
+            <field name="res_model">chat.zalo</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create a new chat zalo
+                </p>
+            </field>
+        </record>
+        <!-- your_module/views/chatzalo_menu.xml -->
+        <menuitem id="menu_view_chat_zalo_oa" name="Chat Zalo OA" parent="menu_zalo_oa"
+                  action="action_chatzalo"
+                  sequence="0" groups="base.group_system,base.group_user"/>
+
+
+    </data>
+</odoo>
+

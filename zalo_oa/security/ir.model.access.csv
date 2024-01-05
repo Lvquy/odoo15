@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_zalo_oa_user,zalo.oa.user,model_zalo_oa,base.group_user,1,1,1,1
+access_zalo_oa_system,zalo.oa.root,model_zalo_oa,base.group_system,1,1,1,1
+
+access_chat_zalo_user,chat.zalo.user,model_chat_zalo,base.group_user,1,1,1,1
+access_log_chat_user,log.chat.user,model_log_chat,base.group_user,1,1,1,1

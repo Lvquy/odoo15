@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="partner_zalochat" model="res.partner">
+            <field name="name">ChatGPT</field>
+            <field name="image_1920" type="base64" file="zalo_oa/static/description/icon.png"/>
+        </record>
+            <record id="user_chatzalo" model="res.users">
+            <field name="login">chatzalo</field>
+            <field name="password">chatzalo</field>
+            <field name="partner_id" ref="zalo_oa.partner_zalochat"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="company_ids" eval="[Command.link(ref('base.main_company'))]"/>
+            <field name="groups_id" eval="[Command.link(ref('base.group_user'))]"/>
+        </record>
+    </data>
+</odoo>
